@@ -1,0 +1,51 @@
+<div class="btn-container">
+  <button class="myTeam-btn" [routerLink]="['/team']">
+    <h3>Mis héroes<i class="bi bi-people-fill"></i></h3>
+  </button>
+</div>
+
+<div *ngIf="heroe" class="hero-detail-container">
+  <div class="card">
+    <div class="card-hero-detail">
+      <h1>{{ heroe.name }}</h1>
+      <img
+        [src]="heroe.thumbnail.path + '.' + heroe.thumbnail.extension"
+        [alt]="heroe.name"
+      />
+      <div class="card-hero-detail-content">
+        <ul>
+          <li>
+            <p>
+              <b>Descripción:</b>
+              {{ heroe.description || "Sin descripción" }}
+            </p>
+          </li>
+          <li>
+            <p><b>Comics:</b> {{ getHeroeComics(heroe) }}</p>
+          </li>
+          <li>
+            <p><b>Series:</b> {{ getHeroeSeries(heroe) }}</p>
+          </li>
+          <li>
+            <p><b>Historias:</b> {{ getHeroeStories(heroe) }}</p>
+          </li>
+          <br />
+        </ul>
+        <button [routerLink]="'/'">VOLVER</button>
+        <button
+          class="addTeam"
+          *ngIf="isHeroeInTeam(heroe); else addBtn"
+          [routerLink]="'/team'"
+        >
+          Ver Equipo
+        </button>
+        <ng-template #addBtn>
+          <button class="addTeam" (click)="addHeroe(heroe)">
+            Añadir a Equipo
+          </button>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+  <app-heroes-comics [comics]="heroe.comics.items"></app-heroes-comics>
+</div>

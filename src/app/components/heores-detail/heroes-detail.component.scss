@@ -1,0 +1,144 @@
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'MarvelFont', sans-serif;
+  }
+
+body {
+  background-color: #1b1b32;
+  color: #d0d0d5;
+  }
+
+.myTeam-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 100px;
+}
+
+// @font-face {
+//   font-family: 'MarvelFont';
+//   src: url('../../assets/fonts/MarvelRegular-Dj83.ttf') format('truetype');
+//   font-weight: normal;
+//   font-style: normal;
+// }
+
+// .title {
+//   font-family: 'MarvelFont', sans-serif;
+//   font-size: 200px;
+//   font-weight: 80;
+//   text-align: center;
+//   margin-top: 50px;
+//   text-transform: uppercase;
+//   background: url(../../assets/img/marvelrandom2.webp) no-repeat;
+//   -webkit-text-fill-color: transparent;
+//   background-clip: text;
+//   background-position: center;
+//   background-size: contain;
+//   -webkit-text-stroke: 1px #d0d0d5;
+// }
+  
+.hero-detail-container {
+  display: flex;
+  justify-content: center;
+  // align-items: center;
+  // height: 100vh;
+  // padding-top: 20px;
+}
+
+.card {
+  width: 325px;
+  background-color: #2a2a40;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin: 10px;
+}
+
+.card h1 {
+  color: #ffcc00;
+  font-size: 32px;
+  text-align: center;
+  padding-top: 20px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+  font-weight: 700;
+}
+
+.card img {
+  width: 100%;
+  height: auto;
+  max-height: 200px;
+  margin-top: 20px;
+  border-radius: 10px;
+}
+
+.card-hero-detail-content {
+  padding: 20px;
+}
+
+.card-hero-detail-content p {
+  color: #d0d0d5;
+}
+
+.card-hero-detail-content b {
+  color: #f0a500;
+}
+
+.addTeam {
+  margin-left: 10px;
+}
+
+.card-hero-detail-content button {
+  background-color: #0a0a23;
+  color: #d0d0d5;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+}
+
+.card-hero-detail-content li {
+  list-style: none;
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #444
+}
+
+.btn-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.myTeam-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+  width: 200px;
+  height: 50px;
+  padding: 0 10px;
+  font-size: 25px;
+  background-color: #2a2a40;
+  border: none;
+  border-radius: 10px;
+  color: #d0d0d5;
+  i {
+    color: #ffcc00;
+    margin-left: 10px;
+  }
+}
+
+.myTeam-btn:hover {
+  background-color: #0a0a23;
+}
+
+@media (max-width: 768px) {
+  .addTeam {
+    margin-left: 0;
+    margin-top: 10px;
+  }
+}

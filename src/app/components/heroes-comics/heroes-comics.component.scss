@@ -1,0 +1,28 @@
+
+.container-comic{
+    display: grid;
+    background-color: #2a2a40;
+    padding: 15px;
+    margin-top: 10px;
+    border-radius: 10px;
+    min-width: 300px;
+    width: 100%;
+    overflow: hidden;
+    height: calc(100% - 20px);
+    b {
+        color: #f0a500;
+    }
+}
+
+.card-comic {
+    font-size: 14px;
+    max-width: 100%;
+    overflow: hidden;
+
+}
+
+.card-comic p {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

@@ -1,1 +1,35 @@
 /* You can add global styles to this file, and also import other style files */
+
+/* Importing Bootstrap SCSS file. */
+@import 'ngx-toastr/toastr';
+@import 'bootstrap/scss/bootstrap';
+@import 'bootstrap/scss/functions';
+@import 'bootstrap/scss/variables';
+@import 'bootstrap/scss/mixins';
+@import 'ngx-toastr/toastr-bs5-alert';
+
+body {
+  background-color: #1b1b32;
+  color: #d0d0d5;
+}
+
+@font-face {
+  font-family: 'MarvelFont';
+  src: url('app/assets/fonts/MarvelRegular-Dj83.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.title {
+  font-family: 'MarvelFont', sans-serif;
+  font-size: 200px;
+  text-align: center;
+  margin-top: 50px;
+  text-transform: uppercase;
+  background: url('app/assets/img/marvelrandom2.webp') no-repeat;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  background-position: center;
+  background-size: contain;
+  -webkit-text-stroke: 1px #d0d0d5;
+}

@@ -1,0 +1,23 @@
+<div class="btn-container">
+  <button class="volver-btn" [routerLink]="'/'">
+    VOLVER<i class="bi bi-box-arrow-left"></i>
+  </button>
+</div>
+<div class="heroes-container">
+  @for (heroe of teamService.myHeroesTeam; track heroe.id) {
+    <div class="card">
+      <h2>{{ heroe.name }}</h2>
+      <img
+        [src]="heroe.thumbnail.path + '.' + heroe.thumbnail.extension"
+        [alt]="heroe.name"
+      />
+      <div class="card-content">
+        <p>{{ heroe.description || "Sin descripción disponible" }}</p>
+        <button [routerLink]="'/heroe/' + heroe.id">Más información</button>
+        <button (click)="removeHeroe(heroe)">Eliminar del Equipo</button>
+      </div>
+    </div>
+  } @empty {
+    <p class="empty">No se encontraron héroes</p>
+  }
+</div>

@@ -1,0 +1,61 @@
+<div class="btn-container">
+  <button class="myTeam-btn" [routerLink]="['/team']">
+    <h3>Mis héroes<i class="bi bi-people-fill"></i></h3>
+  </button>
+</div>
+
+<form [formGroup]="findFilter" class="search-container">
+  <div>
+    <input
+      type="text"
+      class="search-input"
+      placeholder="Buscar héroe"
+      formControlName="heroName"
+      #searchFilter
+    />
+    <i class="bi bi-search"></i>
+  </div>
+</form>
+
+<div class="heroes-container" (scrolled)="onScroll()">
+  @for (heroe of heroes; track $index) {
+    <div class="card">
+      <h2>{{ heroe.name }}</h2>
+      <img
+        [src]="heroe.thumbnail.path + '.' + heroe.thumbnail.extension"
+        [alt]="heroe.name"
+      />
+      <div class="card-content">
+        <p>{{ heroe.description || "Sin descripción disponible" }}</p>
+        <button [routerLink]="'/heroe/' + heroe.id">Más información</button>
+        <!-- <button (click)="addHeroe(heroe)">Añadir a Equipo</button> -->
+        <button
+          class="removeTeam-btn"
+          *ngIf="isHeroeInTeam(heroe); else addBtn"
+          (click)="removeHeroe(heroe)"
+        >
+          Eliminar del Equipo
+        </button>
+        <ng-template #addBtn>
+          <button (click)="addHeroe(heroe)">Añadir a Equipo</button>
+        </ng-template>
+      </div>
+    </div>
+  } @empty {
+    @if (!loading) {
+      <p class="empty">No se encontraron héroes</p>
+    }
+  }
+  <div
+    class="infinite"
+    infiniteScroll
+    [infiniteScrollDistance]="2"
+    [infiniteScrollUpDistance]="1.5"
+    [infiniteScrollThrottle]="50"
+    (scrolled)="onScroll()"
+  >
+    @if (loading) {
+      <div class="spinner"></div>
+    }
+  </div>
+</div>
