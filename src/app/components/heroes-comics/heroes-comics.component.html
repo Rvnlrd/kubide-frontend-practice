@@ -1,15 +1,19 @@
 <div class="container-comic">
   <b>Aparece en:</b>
-  <div *ngFor="let comic of comics" class="card-comic">
-    <p>{{ comic.name }}</p>
+  <div class="container-comic" [ngStyle]="{ opacity: loading ? '0.5' : '1' }">
+    <div *ngFor="let comic of comics" class="card-comic">
+      <p>{{ comic.title }}</p>
+    </div>
+    <div *ngIf="loading" class="spinner"></div>
   </div>
 
   <ngb-pagination
+    class="pagination"
     [(page)]="currentPage"
     [collectionSize]="totalComics"
     [pageSize]="10"
     [ellipses]="true"
     [maxSize]="5"
-    (pageChange)="getHeroesComics()"
+    (pageChange)="getHeroesComics($event)"
   ></ngb-pagination>
 </div>

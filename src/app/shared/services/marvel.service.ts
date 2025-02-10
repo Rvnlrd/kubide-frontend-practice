@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import * as CryptoJS from 'crypto-js';
 import { map, Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import { Comic } from '../interfaces/comics/comic.interface';
 import {
   CharacterDataContainer,
   CharacterDataWrapper,
@@ -98,12 +99,12 @@ export class MarvelService {
     id: number,
     offset: number = 0,
     limit: number = 10,
-  ): Observable<CharacterDataContainer> {
+  ): Observable<CharacterDataContainer<Comic>> {
     const { ts, hash } = this.generateHash();
     return this.http
-      .get<CharacterDataWrapper>(
-        `${this.baseUrl}characters/${id}/comics?ts=${ts}&apikey=${this.publicKey}&hash=${hash}&offset=${offset}&limit=${limit}`,
-      )
+      .get<
+        CharacterDataWrapper<Comic>
+      >(`${this.baseUrl}characters/${id}/comics?ts=${ts}&apikey=${this.publicKey}&hash=${hash}&offset=${offset}&limit=${limit}`)
       .pipe(
         map((resp) => resp.data),
         catchError((error) => {

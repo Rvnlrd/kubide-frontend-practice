@@ -18,34 +18,10 @@ body {
   margin-bottom: 100px;
 }
 
-// @font-face {
-//   font-family: 'MarvelFont';
-//   src: url('../../assets/fonts/MarvelRegular-Dj83.ttf') format('truetype');
-//   font-weight: normal;
-//   font-style: normal;
-// }
-
-// .title {
-//   font-family: 'MarvelFont', sans-serif;
-//   font-size: 200px;
-//   font-weight: 80;
-//   text-align: center;
-//   margin-top: 50px;
-//   text-transform: uppercase;
-//   background: url(../../assets/img/marvelrandom2.webp) no-repeat;
-//   -webkit-text-fill-color: transparent;
-//   background-clip: text;
-//   background-position: center;
-//   background-size: contain;
-//   -webkit-text-stroke: 1px #d0d0d5;
-// }
   
 .hero-detail-container {
   display: flex;
   justify-content: center;
-  // align-items: center;
-  // height: 100vh;
-  // padding-top: 20px;
 }
 
 .card {

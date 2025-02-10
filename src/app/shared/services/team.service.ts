@@ -10,9 +10,8 @@ export class TeamService {
 
   constructor() {
     const team = localStorage.getItem('myHeroesTeam');
-    if (team) {
-      this.myHeroesTeam = JSON.parse(team);
-    }
+
+    this.myHeroesTeam = team ? JSON.parse(team) : [];
   }
 
   private updateLocalStorage(): void {

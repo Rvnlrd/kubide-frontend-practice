@@ -1,7 +1,13 @@
 <div class="btn-container">
   <button class="myTeam-btn" [routerLink]="['/team']">
-    <h3>Mis héroes<i class="bi bi-people-fill"></i></h3>
+    <h3>Mis héroes <i class="bi bi-people-fill"></i></h3>
   </button>
+</div>
+
+<div class="heroTeam-preview">
+  <span *ngFor="let heroe of teamHeroes"
+    >{{ heroe.name }} <button (click)="removeHeroe(heroe)">❌</button>
+  </span>
 </div>
 
 <form [formGroup]="findFilter" class="search-container">

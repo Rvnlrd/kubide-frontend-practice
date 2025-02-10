@@ -20,11 +20,21 @@ body {
   font-style: normal;
 }
 
+.header-logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px;
+}
+
+.logo-btn {
+  background-color: transparent;
+  border: none;
+}
+
 .title {
   font-family: 'MarvelFont', sans-serif;
   font-size: 200px;
-  text-align: center;
-  margin-top: 50px;
   text-transform: uppercase;
   background: url('app/assets/img/marvelrandom2.webp') no-repeat;
   -webkit-text-fill-color: transparent;
@@ -32,4 +42,33 @@ body {
   background-position: center;
   background-size: contain;
   -webkit-text-stroke: 1px #d0d0d5;
+}
+
+.pagination {
+  --bs-pagination-bg: trabsparent;
+  --bs-pagination-color: #f0a500;
+  --bs-pagination-border-color: transparent;
+  --bs-pagination-hover-bg: #1b1b32;
+  --bs-pagination-hover-color: #d0d0d5;
+  --bs-pagination-active-bg: #1b1b32;
+  --bs-pagination-active-color: #d0d0d5;
+  --bs-pagination-disabled-color: #f0a500;
+  --bs-pagination-focus-bg: transparent;
+  --bs-pagination-disabled-bg: transparent;
+  --bs-pagination-active-border-color: transparent;
+  --bs-pagination-disabled-border-color: transparent;
+  --bs-pagination-focus-color: #f0a500;
+  --bs-pagination-hover-border-color: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: auto;
+}
+
+.page-link{
+  border-radius: 20%;
+}
+
+.page-link:focus {
+  box-shadow: none;
 }

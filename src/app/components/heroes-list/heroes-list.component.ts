@@ -30,6 +30,7 @@ import { TeamService } from '../../shared/services/team.service';
 export class HeroesListComponent implements OnInit {
   loading: boolean = false;
   heroes: Heroe[] = [];
+  teamHeroes: Heroe[] = [];
   total: number = 0;
   findFilter!: FormGroup;
   isSearching: boolean = false;
@@ -54,6 +55,7 @@ export class HeroesListComponent implements OnInit {
       });
 
     this.getHeroes();
+    this.showHeroeTeam();
   }
 
   onScroll(): void {
@@ -126,15 +128,23 @@ export class HeroesListComponent implements OnInit {
       return;
     }
     this.teamService.addHeroe(heroe);
+    this.showHeroeTeam();
+
     this.toastrService.success(`${heroe.name} añadido al equipo`);
   }
 
   removeHeroe(heroe: Heroe): void {
     this.teamService.removeHeroe(heroe);
+    this.showHeroeTeam();
+
     this.toastrService.warning(`${heroe.name} eliminado del equipo`);
   }
 
   isHeroeInTeam(heroe: Heroe): boolean {
     return this.teamService.isHeroeInTeam(heroe);
+  }
+
+  showHeroeTeam(): void {
+    this.teamHeroes = this.teamService.myHeroesTeam;
   }
 }

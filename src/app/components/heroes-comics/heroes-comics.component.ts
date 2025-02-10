@@ -1,10 +1,10 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { MarvelService } from '../../shared/services/marvel.service';
 
 import { CommonModule } from '@angular/common';
 import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
-import { ComicSummary } from '../../shared/interfaces/heroe/heroe.interface';
+import { Comic } from '../../shared/interfaces/comics/comic.interface';
 
 @Component({
   selector: 'app-heroes-comics',
@@ -14,10 +14,11 @@ import { ComicSummary } from '../../shared/interfaces/heroe/heroe.interface';
   imports: [CommonModule, NgbPaginationModule],
 })
 export class HeroesComicsComponent implements OnInit {
-  @Input() comics: ComicSummary[] = [];
-  currentPage: number = 1;
+  comics: Comic[] = [];
+  currentPage: number = 0;
   totalComics: number = 0;
   heroeId: number = 0;
+  loading: boolean = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -26,17 +27,22 @@ export class HeroesComicsComponent implements OnInit {
 
   ngOnInit(): void {
     this.heroeId = this.route.snapshot.params['id'];
-    this.getHeroesComics();
   }
 
   getHeroesComics(page: number = 1): void {
+    this.loading = true;
     this.currentPage = page;
-    const offset = (this.currentPage - 1) * 10;
+
+    // const offset = page === 1 ? 0 : (page - 1) * 10;
+    //cuando page = 1, el resultado es 0, que es lo mismo que tu condición actual.
+    const offset = (page - 1) * 10;
+
     this.marvelService.getHeroComics(this.heroeId, offset, 10).subscribe({
       next: (resp) => {
         if (resp && resp.results) {
           this.comics = resp.results;
           this.totalComics = resp.total;
+          this.loading = false;
         }
       },
       error: (err) => console.error('Error al cargar cómics:', err),

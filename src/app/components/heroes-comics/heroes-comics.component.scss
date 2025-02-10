@@ -1,17 +1,18 @@
 
 .container-comic{
-    display: grid;
-    background-color: #2a2a40;
-    padding: 15px;
-    margin-top: 10px;
-    border-radius: 10px;
-    min-width: 300px;
-    width: 100%;
-    overflow: hidden;
-    height: calc(100% - 20px);
-    b {
-        color: #f0a500;
-    }
+  position: relative;
+  display: grid;
+  background-color: #2a2a40;
+  padding: 15px;
+  margin-top: 10px;
+  border-radius: 10px;
+  min-width: 370px;
+  max-width: 400px;
+  overflow: hidden;
+  height: calc(100% - 20px);
+  b {
+      color: #f0a500;
+  }
 }
 
 .card-comic {
@@ -26,3 +27,22 @@
     overflow: hidden;
     text-overflow: ellipsis;
 }
+
+.spinner {
+    border: 4px solid rgba(0, 0, 0, 0.1);
+    border-left-color: #f0a500;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+    margin: 20px auto;
+    position: absolute;
+    left: 165px;
+    top: calc(50% - 50px);
+  }
+  
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
