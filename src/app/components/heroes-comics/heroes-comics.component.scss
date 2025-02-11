@@ -1,4 +1,3 @@
-
 .container-comic{
   position: relative;
   display: grid;
@@ -6,7 +5,7 @@
   padding: 15px;
   margin-top: 10px;
   border-radius: 10px;
-  min-width: 370px;
+  min-width: 100%;
   max-width: 400px;
   overflow: hidden;
   height: calc(100% - 20px);
@@ -44,5 +43,15 @@
   @keyframes spin {
     to {
       transform: rotate(360deg);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .container-comic {
+      width: 90%;
+      margin: 10px auto;
+    }
+    .card-comic {
+      font-size: 12px;
     }
   }
