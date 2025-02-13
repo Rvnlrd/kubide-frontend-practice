@@ -45,7 +45,7 @@ body {
 }
 
 .pagination {
-  --bs-pagination-bg: trabsparent;
+  --bs-pagination-bg: transparent;
   --bs-pagination-color: #f0a500;
   --bs-pagination-border-color: transparent;
   --bs-pagination-hover-bg: #1b1b32;
@@ -63,6 +63,7 @@ body {
   justify-content: center;
   align-items: center;
   margin-top: auto;
+  padding-right: 20px;
 }
 
 .page-link{
@@ -71,4 +72,17 @@ body {
 
 .page-link:focus {
   box-shadow: none;
+}
+.page-item:not(:first-child) .page-link {
+  margin-left: calc(var(--bs-border-width)* -5);
+}
+
+@media (max-width: 768px) {
+  .pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: auto;
+    padding-right: 16px;
+  }
 }

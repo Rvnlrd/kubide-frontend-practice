@@ -5,8 +5,8 @@
   padding: 15px;
   margin-top: 10px;
   border-radius: 10px;
-  min-width: 100%;
-  max-width: 400px;
+  width: 400px;
+  height: 300px;
   overflow: hidden;
   height: calc(100% - 20px);
   b {
@@ -15,43 +15,43 @@
 }
 
 .card-comic {
-    font-size: 14px;
-    max-width: 100%;
-    overflow: hidden;
+  font-size: 14px;
+  max-width: 100%;
+  overflow: hidden;
 
 }
 
 .card-comic p {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .spinner {
-    border: 4px solid rgba(0, 0, 0, 0.1);
-    border-left-color: #f0a500;
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    animation: spin 1s linear infinite;
-    margin: 20px auto;
-    position: absolute;
-    left: 165px;
-    top: calc(50% - 50px);
-  }
-  
-  @keyframes spin {
-    to {
-      transform: rotate(360deg);
-    }
-  }
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  border-left-color: #f0a500;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+  margin: 20px auto;
+  position: absolute;
+  left: 165px;
+  top: calc(50% - 50px);
+}
 
-  @media (max-width: 768px) {
-    .container-comic {
-      width: 90%;
-      margin: 10px auto;
-    }
-    .card-comic {
-      font-size: 12px;
-    }
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
   }
+}
+
+@media (max-width: 768px) {
+  .container-comic {
+    width: 320px;
+    margin: 10px auto;
+  }
+  .card-comic {
+    font-size: 12px;
+  }
+}
