@@ -9,9 +9,9 @@ import {
 import { RouterModule } from '@angular/router';
 import { InfiniteScrollDirective } from 'ngx-infinite-scroll';
 import { ToastrService } from 'ngx-toastr';
-import { debounceTime, distinctUntilChanged } from 'rxjs';
+import { debounceTime, distinctUntilChanged, Observable } from 'rxjs';
 import { Heroe } from '../../shared/interfaces/heroe/heroe.interface';
-import { MarvelService } from '../../shared/services/marvel.service';
+import { ApiData, MarvelService } from '../../shared/services/marvel.service';
 import { TeamService } from '../../shared/services/team.service';
 
 @Component({
@@ -28,12 +28,11 @@ import { TeamService } from '../../shared/services/team.service';
   styleUrl: './heroes-list.component.scss',
 })
 export class HeroesListComponent implements OnInit {
-  loading: boolean = false;
-  heroes: Heroe[] = [];
   teamHeroes: Heroe[] = [];
-  total: number = 0;
+
   findFilter!: FormGroup;
   isSearching: boolean = false;
+  heroes$!: Observable<ApiData<Heroe>>;
 
   constructor(
     private marvelService: MarvelService,
@@ -47,6 +46,8 @@ export class HeroesListComponent implements OnInit {
       heroName: [''],
     });
 
+    this.heroes$ = this.marvelService.heroes$;
+
     this.findFilter
       .get('heroName')!
       .valueChanges.pipe(debounceTime(300), distinctUntilChanged())
@@ -59,66 +60,30 @@ export class HeroesListComponent implements OnInit {
   }
 
   onScroll(): void {
-    const offset = this.heroes.length;
+    const offset = this.marvelService._heroesState.data?.results.length || 0;
     const limit = 6;
-    this.loading = true;
-
+    console.log(offset);
     if (this.isSearching) {
       const name = this.findFilter.get('heroName')!.value;
-      this.marvelService.searchHeroes(name, offset, limit).subscribe((resp) => {
-        this.heroes.push(...resp.results);
-        this.total = resp.total;
-        this.loading = false;
-      });
+      this.marvelService.searchHeroes(name, offset, limit);
     } else {
-      this.marvelService.getHeroes(offset, limit).subscribe((resp) => {
-        this.heroes.push(...resp.results);
-        this.total = resp.total;
-        this.loading = false;
-      });
+      this.marvelService.getHeroes(offset, limit);
     }
   }
 
   search(heroName: string): void {
-    this.loading = true;
-
+    this.marvelService.resetHeroes();
     if (heroName.trim().length === 0) {
       this.isSearching = false;
-
-      this.marvelService.getHeroes().subscribe({
-        next: (resp) => {
-          this.heroes = resp.results;
-          this.total = resp.total;
-          this.loading = false;
-        },
-      });
+      this.marvelService.getHeroes();
     } else {
       this.isSearching = true;
-
-      this.marvelService.searchHeroes(heroName).subscribe({
-        next: (resp) => {
-          this.heroes = resp.results;
-          this.total = resp.total;
-          this.loading = false;
-        },
-      });
+      this.marvelService.searchHeroes(heroName);
     }
   }
 
   private getHeroes(): void {
-    this.loading = true;
-    this.marvelService.getHeroes().subscribe({
-      next: (resp) => {
-        if (resp && resp.results) {
-          this.heroes = resp.results;
-          this.total = resp.total;
-        }
-        this.loading = false;
-      },
-      error: (err) => {
-        console.error('Error al cargar héroes:', err), (this.loading = false);
-      },
-    });
+    this.marvelService.getHeroes();
   }
 
   addHeroe(heroe: Heroe): void {

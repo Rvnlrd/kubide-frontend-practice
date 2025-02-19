@@ -22,9 +22,9 @@
     <i class="bi bi-search"></i>
   </div>
 </form>
-
+@let heroes = heroes$ | async;
 <div class="heroes-container" (scrolled)="onScroll()">
-  @for (heroe of heroes; track $index) {
+  @for (heroe of heroes?.data?.results; track $index) {
     <div class="card">
       <h2>{{ heroe.name }}</h2>
       <img
@@ -48,7 +48,7 @@
       </div>
     </div>
   } @empty {
-    @if (!loading) {
+    @if (!heroes?.loading) {
       <p class="empty">No se encontraron héroes</p>
     }
   }
@@ -60,7 +60,7 @@
     [infiniteScrollThrottle]="50"
     (scrolled)="onScroll()"
   >
-    @if (loading) {
+    @if (heroes?.loading) {
       <div class="spinner"></div>
     }
   </div>

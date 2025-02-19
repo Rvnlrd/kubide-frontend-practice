@@ -33,8 +33,6 @@ export class HeroesComicsComponent implements OnInit {
     this.loading = true;
     this.currentPage = page;
 
-    // const offset = page === 1 ? 0 : (page - 1) * 10;
-    //cuando page = 1, el resultado es 0, que es lo mismo que tu condición actual.
     const offset = (page - 1) * 10;
 
     this.marvelService.getHeroComics(this.heroeId, offset, 10).subscribe({
